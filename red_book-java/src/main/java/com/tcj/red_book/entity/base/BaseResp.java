@@ -26,6 +26,7 @@ public class BaseResp {
     public BaseResp(String result, String message) {
         this.result = result;
         this.message = message;
+//        this.timestamp =
     }
 
     public static BaseResp errorResp(String result,String message){

@@ -5,7 +5,7 @@ package com.tcj.red_book.util;
  *
  *
  */
-final class BeanUtil {
+public final class BeanUtil {
 
     /**
      * 此类不需要实例化

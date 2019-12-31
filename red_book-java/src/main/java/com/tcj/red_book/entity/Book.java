@@ -19,6 +19,12 @@ public class Book {
         this.data = data;
     }
 
+    public Book(String tiitle, String tag, Date createTime) {
+        this.tiitle = tiitle;
+        this.tag = tag;
+        this.createTime = createTime;
+    }
+
     public Book() {
     }
 }
