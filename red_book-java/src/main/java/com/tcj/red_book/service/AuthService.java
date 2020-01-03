@@ -6,7 +6,7 @@ import com.tcj.red_book.entity.base.RegisterBody;
 
 import javax.servlet.http.HttpServletRequest;
 
-public interface AuthServie {
+public interface AuthService {
 
     BaseResp toLogin(LoginBody loginBody);
 

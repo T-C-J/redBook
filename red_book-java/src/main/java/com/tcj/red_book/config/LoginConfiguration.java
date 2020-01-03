@@ -20,7 +20,7 @@ public class LoginConfiguration implements WebMvcConfigurer {
         if(StringUtils.isNotBlank(paths)){
             System.out.println(paths);
 //            loginReleasePaths = new String[]{"/img/**","/**/*.html","/user/login/pc"};
-            loginReleasePaths = new String[]{"/","/index","/loginPage","/register","/toLogin","/errorPage"
+            loginReleasePaths = new String[]{"/","/index","/loginPage","/register","/login","/errorPage"
             ,"/img/**","/css/**","/js/**"};
         }else{
             loginReleasePaths = new String[0];

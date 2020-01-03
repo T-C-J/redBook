@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tcj.red_book.dao.UserConfigMapper">
+  <resultMap id="BaseResultMap" type="com.tcj.red_book.entity.pojo.UserConfig">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="detail" jdbcType="VARCHAR" property="detail" />
+    <result column="head_sculpture" jdbcType="VARCHAR" property="headSculpture" />
+    <result column="head_sculpture_local" jdbcType="VARCHAR" property="headSculptureLocal" />
+    <result column="img_urls_local" jdbcType="VARCHAR" property="imgUrlsLocal" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.tcj.red_book.entity.pojo.UserConfigWithBLOBs">
+    <result column="img_urls" jdbcType="LONGVARCHAR" property="imgUrls" />
+    <result column="extend" jdbcType="LONGVARCHAR" property="extend" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, detail, head_sculpture, head_sculpture_local, img_urls_local, create_time, 
+    update_time
+  </sql>
+  <sql id="Blob_Column_List">
+    img_urls, extend
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from user_config
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_config
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tcj.red_book.entity.pojo.UserConfigWithBLOBs">
+    insert into user_config (id, user_id, detail, 
+      head_sculpture, head_sculpture_local, img_urls_local, 
+      create_time, update_time, img_urls, 
+      extend)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{detail,jdbcType=VARCHAR}, 
+      #{headSculpture,jdbcType=VARCHAR}, #{headSculptureLocal,jdbcType=VARCHAR}, #{imgUrlsLocal,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{imgUrls,jdbcType=LONGVARCHAR}, 
+      #{extend,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tcj.red_book.entity.pojo.UserConfigWithBLOBs">
+    insert into user_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="detail != null">
+        detail,
+      </if>
+      <if test="headSculpture != null">
+        head_sculpture,
+      </if>
+      <if test="headSculptureLocal != null">
+        head_sculpture_local,
+      </if>
+      <if test="imgUrlsLocal != null">
+        img_urls_local,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="imgUrls != null">
+        img_urls,
+      </if>
+      <if test="extend != null">
+        extend,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="detail != null">
+        #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="headSculpture != null">
+        #{headSculpture,jdbcType=VARCHAR},
+      </if>
+      <if test="headSculptureLocal != null">
+        #{headSculptureLocal,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrlsLocal != null">
+        #{imgUrlsLocal,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="imgUrls != null">
+        #{imgUrls,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="extend != null">
+        #{extend,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tcj.red_book.entity.pojo.UserConfigWithBLOBs">
+    update user_config
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="detail != null">
+        detail = #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="headSculpture != null">
+        head_sculpture = #{headSculpture,jdbcType=VARCHAR},
+      </if>
+      <if test="headSculptureLocal != null">
+        head_sculpture_local = #{headSculptureLocal,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrlsLocal != null">
+        img_urls_local = #{imgUrlsLocal,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="imgUrls != null">
+        img_urls = #{imgUrls,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="extend != null">
+        extend = #{extend,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.tcj.red_book.entity.pojo.UserConfigWithBLOBs">
+    update user_config
+    set user_id = #{userId,jdbcType=INTEGER},
+      detail = #{detail,jdbcType=VARCHAR},
+      head_sculpture = #{headSculpture,jdbcType=VARCHAR},
+      head_sculpture_local = #{headSculptureLocal,jdbcType=VARCHAR},
+      img_urls_local = #{imgUrlsLocal,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      img_urls = #{imgUrls,jdbcType=LONGVARCHAR},
+      extend = #{extend,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tcj.red_book.entity.pojo.UserConfig">
+    update user_config
+    set user_id = #{userId,jdbcType=INTEGER},
+      detail = #{detail,jdbcType=VARCHAR},
+      head_sculpture = #{headSculpture,jdbcType=VARCHAR},
+      head_sculpture_local = #{headSculptureLocal,jdbcType=VARCHAR},
+      img_urls_local = #{imgUrlsLocal,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

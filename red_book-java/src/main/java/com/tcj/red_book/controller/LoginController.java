@@ -4,7 +4,7 @@ import com.tcj.red_book.entity.base.BaseReq;
 import com.tcj.red_book.entity.base.BaseResp;
 import com.tcj.red_book.entity.base.LoginBody;
 import com.tcj.red_book.entity.base.RegisterBody;
-import com.tcj.red_book.service.AuthServie;
+import com.tcj.red_book.service.AuthService;
 import com.tcj.red_book.util.JSONUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController {
 
     @Autowired
-    private AuthServie authServie;
+    private AuthService authServie;
 
     @RequestMapping("login")
     public BaseResp login(@RequestBody BaseReq req){

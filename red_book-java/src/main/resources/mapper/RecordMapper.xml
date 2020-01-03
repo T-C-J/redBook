@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tcj.red_book.dao.RecordMapper">
+  <resultMap id="BaseResultMap" type="com.tcj.red_book.entity.pojo.Record">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="category" jdbcType="INTEGER" property="category" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="tag" jdbcType="VARCHAR" property="tag" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.tcj.red_book.entity.pojo.RecordWithBLOBs">
+    <result column="article" jdbcType="LONGVARCHAR" property="article" />
+    <result column="extend" jdbcType="LONGVARCHAR" property="extend" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, category, create_time, update_time, tag, title
+  </sql>
+  <sql id="Blob_Column_List">
+    article, extend
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tcj.red_book.entity.pojo.RecordWithBLOBs">
+    insert into record (id, user_id, category, 
+      create_time, update_time, tag, 
+      title, article, extend
+      )
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{category,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{tag,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR}, #{article,jdbcType=LONGVARCHAR}, #{extend,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tcj.red_book.entity.pojo.RecordWithBLOBs">
+    insert into record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="category != null">
+        category,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="tag != null">
+        tag,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="article != null">
+        article,
+      </if>
+      <if test="extend != null">
+        extend,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="category != null">
+        #{category,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tag != null">
+        #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="article != null">
+        #{article,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="extend != null">
+        #{extend,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tcj.red_book.entity.pojo.RecordWithBLOBs">
+    update record
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="category != null">
+        category = #{category,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tag != null">
+        tag = #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="article != null">
+        article = #{article,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="extend != null">
+        extend = #{extend,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.tcj.red_book.entity.pojo.RecordWithBLOBs">
+    update record
+    set user_id = #{userId,jdbcType=INTEGER},
+      category = #{category,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      tag = #{tag,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      article = #{article,jdbcType=LONGVARCHAR},
+      extend = #{extend,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tcj.red_book.entity.pojo.Record">
+    update record
+    set user_id = #{userId,jdbcType=INTEGER},
+      category = #{category,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      tag = #{tag,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

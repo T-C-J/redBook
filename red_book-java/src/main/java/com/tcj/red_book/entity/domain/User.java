@@ -20,8 +20,8 @@ public class User {
     private Integer id;
     private String username;
     private String password;
-    private int phone;
-    private int matchId;
+    private String phone;
+    private String matchId;
 
     private String imgUrl;
     private String imgUrlLocal;
@@ -34,13 +34,14 @@ public class User {
     private Integer isActive;
 
 
-    private User(String username, String password) {
-        this.username = username;
+    private User(String password, String phone) {
         this.password = password;
+        this.phone = phone;
         this.createTime = new Date();
     }
 
-    public static User register(String username, String password){
-        return new User(username,password);
+
+    public static User register(String phone, String password){
+        return new User(password,phone);
     }
 }

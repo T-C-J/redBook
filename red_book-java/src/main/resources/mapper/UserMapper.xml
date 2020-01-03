@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tcj.red_book.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.tcj.red_book.entity.pojo.User">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="match_id" jdbcType="VARCHAR" property="matchId" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="is_active" jdbcType="INTEGER" property="isActive" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.tcj.red_book.entity.pojo.UserWithBLOBs">
+    <result column="img_url" jdbcType="LONGVARCHAR" property="imgUrl" />
+    <result column="extend" jdbcType="LONGVARCHAR" property="extend" />
+    <result column="img_url_local" jdbcType="LONGVARCHAR" property="imgUrlLocal" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, phone, password, username, match_id, birthday, is_active, create_time, update_time
+  </sql>
+  <sql id="Blob_Column_List">
+    img_url, extend, img_url_local
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tcj.red_book.entity.pojo.UserWithBLOBs">
+    insert into user (id, phone, password, 
+      username, match_id, birthday, 
+      is_active, create_time, update_time, 
+      img_url, extend, img_url_local
+      )
+    values (#{id,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{username,jdbcType=VARCHAR}, #{matchId,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, 
+      #{isActive,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{imgUrl,jdbcType=LONGVARCHAR}, #{extend,jdbcType=LONGVARCHAR}, #{imgUrlLocal,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tcj.red_book.entity.pojo.UserWithBLOBs">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="matchId != null">
+        match_id,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="isActive != null">
+        is_active,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="imgUrl != null">
+        img_url,
+      </if>
+      <if test="extend != null">
+        extend,
+      </if>
+      <if test="imgUrlLocal != null">
+        img_url_local,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="matchId != null">
+        #{matchId,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="isActive != null">
+        #{isActive,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="imgUrl != null">
+        #{imgUrl,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="extend != null">
+        #{extend,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="imgUrlLocal != null">
+        #{imgUrlLocal,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tcj.red_book.entity.pojo.UserWithBLOBs">
+    update user
+    <set>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="matchId != null">
+        match_id = #{matchId,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="isActive != null">
+        is_active = #{isActive,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="imgUrl != null">
+        img_url = #{imgUrl,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="extend != null">
+        extend = #{extend,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="imgUrlLocal != null">
+        img_url_local = #{imgUrlLocal,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.tcj.red_book.entity.pojo.UserWithBLOBs">
+    update user
+    set phone = #{phone,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      match_id = #{matchId,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      is_active = #{isActive,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      img_url = #{imgUrl,jdbcType=LONGVARCHAR},
+      extend = #{extend,jdbcType=LONGVARCHAR},
+      img_url_local = #{imgUrlLocal,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tcj.red_book.entity.pojo.User">
+    update user
+    set phone = #{phone,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      match_id = #{matchId,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      is_active = #{isActive,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

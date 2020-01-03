@@ -11,12 +11,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class AuthTest {
 
     @Autowired
-    private AuthServie authServie;
+    private AuthService authServie;
 
     @Test
     public void login(){
         LoginBody loginBody = new LoginBody();
-        loginBody.setUserName("tcj");
+        loginBody.setPhoneNo("18355093255");
         loginBody.setPassWord("159357");
         BaseResp baseResp = authServie.toLogin(loginBody);
 
@@ -28,7 +28,7 @@ public class AuthTest {
 
         RegisterBody registerBody = new RegisterBody();
         registerBody.setPassword("159357");
-        registerBody.setUserName("tcj");
+        registerBody.setPhoneNo("18355093255");
         BaseResp baseResp = authServie.toRegister(registerBody);
         System.out.println(baseResp);
     }
